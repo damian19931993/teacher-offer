@@ -1,8 +1,6 @@
 package com.openteacherappointment.openteacherappointment.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -13,20 +11,22 @@ import lombok.Getter;
 public class JobOffer {
 
     @Id
-    private String id;
-    private String school;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "school_id")
+    private School school;
     private String ige;
-    private String area;
+    @ManyToOne
+    @JoinColumn(name = "area_id")
+    private Area area;
     private String level;
-    private String district;
-    private String address;
     private boolean headInCharge;
     private String course;
     private String shift;
     private String jornada;
     private String jobType;
-    private boolean contagiousDisease;
-    private String staring;
+    private String startingDate;
     private String startOffer;
     private String endOffer;
     private String sinceDate;
